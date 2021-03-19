@@ -9,9 +9,9 @@ disponibles = ['vaporeon', 'flareon', 'jolteon', 'eevee']
 disponibles_jugador = disponibles[::]
 disponibles_rival = disponibles[::]
 
-def mostrar_disponibles(lista):
+def mostrar_disponibles():
     """Imprime en la salida la lista de pokemon disponibles"""
-    for i in lista:
+    for i in disponibles_jugador:
         print(i)
 
 def quitar_disponible(nombre, lista):
@@ -69,7 +69,7 @@ def seleccionar_pokemon_rival(lista):
 
 print('Hola entrenador, preparate para combatir!\n')
 print('Pokemon disponibles:')
-mostrar_disponibles(disponibles_jugador)
+mostrar_disponibles()
 print()
 
 equipo = seleccionar_pokemon(disponibles_jugador)

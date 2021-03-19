@@ -18,7 +18,7 @@ class Movimiento:
         self.__pp -= 1
 
     def usar(self):
-        if self.get_pp == 0:
+        if self.get_pp() < 1:
             raise ValueError('No quedan PPs')
         else:
             self.reducir_pp()

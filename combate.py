@@ -1,75 +1,56 @@
+from turno import Turno
 from entrenador import Entrenador
-from pokemon import Pokemon
-from pokedex import *
-from movimientos import *
 import random
 
-disponibles_jugador = ['vaporeon', 'flareon', 'jolteon', 'eevee']
-disponibles_rival = ['vaporeon', 'flareon', 'jolteon', 'eevee']
+class Combate:
+    def __init__(self, jugador: Entrenador, rival: Entrenador):
+        self.__jugador = jugador
+        self.__rival = rival
+        self.__turno = None
+        self.__terminado = False
 
-def mostrar_disponibles(lista):
-    for i in lista:
-        print(i)
+    def get_jugador(self):
+        return self.__jugador
 
-def quitar_disponible(nombre, lista):
-    lista.remove(nombre)
+    def get_rival(self):
+        return self.__rival
 
-def despachar_pokemon(pk, lista):
-    """Devuelve el pokemon seleccionado"""
-    if pk not in lista:
-        raise ValueError('El pokemon elegido no se encuentra disponible')
-    elif pk == 'vaporeon':
-        quitar_disponible('vaporeon', lista)
-        return Vaporeon()
-    elif pk == 'flareon':
-        quitar_disponible('flareon', lista)
-        return Flareon()
-    elif pk == 'jolteon':
-        quitar_disponible('jolteon', lista)
-        return Jolteon()
-    elif pk == 'eevee':
-        quitar_disponible('eevee', lista)
-        return Eevee()
+    def get_turno(self):
+        return self.__turno
 
+    def get_terminado(self):
+        return self.__terminado
 
-def seleccionar_pokemon(lista):
-    """Devuelve una lista con 3 instancias de la clase Pokemon"""
-    pk1 = None
-    pk2 = None
-    pk3 = None
+    def set_terminado(self):
+        self.__terminado = True
 
-    seleccion = [pk1, pk2, pk3]
-    contador = 0
+    def siguiente_turno(self):
+        accion_jugador = self.pedir_accion()
+        accion_rival = self.seleccionar_ataque_rival()
 
-    while contador < 3:
-        try:
-            seleccion[contador] = despachar_pokemon(input('Elige un pokemon: '), lista)
-        except ValueError:
-            print('\nEl pokemon elegido no se encuentra disponible. Elige uno de los siguientes:')
-            mostrar_disponibles(lista)
-        else:
-            contador += 1
-        finally:
-            print()
-            continue
-    return seleccion
-
-def seleccionar_pokemon_rival(lista):
-    seleccion = []
-    for i in range(0, 3):
-        aleatorio = random.choice(lista)
-        poke = despachar_pokemon(aleatorio, lista)
-        seleccion.append(poke)
-    return seleccion
+        self.__turno = Turno()
+        #pedir accion
+        #elegir primer atacante
+        #atacar
+        #if vida de pokemon = 0, comprobar equipo: if equipo = 0, gameover, else: cambiar pokemon, else atacar
+        #if vida de pokemon = 0, comprobar equipo: if equipo = 0, gameover, else: cambiar pokemon, else FIN
 
 
-print('Hola entrenador, preparate para combatir!\n')
-print('Pokemon disponibles:')
-mostrar_disponibles(disponibles_jugador)
-print()
+        if len(self.get_jugador().get_equipo()) == 0:
+            pass
 
-equipo = seleccionar_pokemon(disponibles_jugador)
-equipo_rival = seleccionar_pokemon_rival(disponibles_rival)
+    def pedir_accion(self):
+        peticion = input('Atacar o cambiar: ')
 
-jugador = Entrenador(equipo[0], equipo[1], equipo[2])
-rival = Entrenador(equipo_rival[0], equipo_rival[1], equipo_rival[2])
+        if peticion == 'atacar':
+            self.pedir_ataque()
+        if peticion == 'cambiar':
+            self.cambiar_pokemon()
+
+    def pedir_ataque(self):
+        ataque = input('Elige el movimiento: ')
+        return self.get_jugador().pokemon_actual().get_movimientos()[int(ataque) - 1]
+
+
+    def seleccionar_ataque_rival(self):
+        return random.choice(self.get_rival().pokemon_actual().get_movimientos())

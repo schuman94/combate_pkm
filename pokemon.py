@@ -68,9 +68,10 @@ class Pokemon:
         self.__movimientos.append(mov4)
 
     def mostrar_movimientos(self):
+        contador = 1
         for i in self.get_movimientos():
-            print(i)
+            print(str(contador) + ': ' + str(i))
+            contador += 1
 
-    @abstractmethod
-    def atacar(self):
-        ...
+    def atacar(self, mov):
+        print(self.get_nombre() + ' usa ' + self.get_movimientos()[mov].usar())

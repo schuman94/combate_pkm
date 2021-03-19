@@ -10,23 +10,27 @@ class Entrenador:
         self.__equipo[pk1.get_nombre()] = pk1
         self.__equipo[pk2.get_nombre()] = pk2
         self.__equipo[pk3.get_nombre()] = pk3
+
     def get_pokemon(self, nombre):
         return self.__equipo[nombre]
 
-    def pokemon(self):
+    def pokemon_actual(self):
         return self.__actual
 
     def cambiar(self, nombre):
         try:
-            if self.__actual == self.get_pokemon(nombre):
+            if self.pokemon_actual() == self.get_pokemon(nombre):
                 raise ValueError(f'{str(self.get_pokemon(nombre)).upper()} ya se encuentra en combate')
             self.__actual = self.get_pokemon(nombre)
             print(f'Adelante {str(self.get_pokemon(nombre)).upper()}!')
         except KeyError:
             print('No tienes ese pokemon en tu equipo')
 
+    def get_equipo(self):
+        return self.__equipo
+
     def equipo(self):
         print()
-        for i in self.__equipo.values():
+        for i in self.get_equipo().values():
             print(str(i).upper())
         print()

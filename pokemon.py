@@ -1,17 +1,29 @@
 from abc import ABC, abstractmethod
 
 class Pokemon:
-    def __init__(self, tipo, vida, ataque, defensa, velocidad, estado=None):
+    def __init__(self, tipo, vida, ataque, defensa, velocidad, estado=None, owner=None):
         self.__tipo = tipo
         self.set_vida(vida)
         self.set_ataque(ataque)
         self.set_defensa(defensa)
         self.set_velocidad(velocidad)
         self.set_estado(estado)
+        self.set_owner(owner)
         self.__movimientos = []
+
+    def get_owner(self):
+        return self.__owner
+
+    def set_owner(self, owner):
+        self.__owner = owner
 
     def get_nombre(self):
         return self.__nombre
+
+    def get_nombre_completo(self):
+        if self.get_owner() == 'rival':
+            return self.get_nombre() + ' enemigo'
+        return self.get_nombre()
 
     def set_nombre(self, nombre):
         self.__nombre = nombre
@@ -54,6 +66,8 @@ class Pokemon:
         return self.__movimientos
 
     def __str__(self):
+        if self.get_owner() == 'rival':
+            return self.get_nombre() + ' enemigo'
         return self.get_nombre()
 
     def __repr__(self):
@@ -79,5 +93,5 @@ class Pokemon:
     def atacar(self, mov):
         """El pokemon usa el ataque indicado y lo imprime en la salida"""
         indice = self.get_movimientos().index(mov)
-        print(self.get_nombre() + ' usa ' + self.get_movimientos()[indice].usar())
+        print(self.get_nombre_completo() + ' usa ' + self.get_movimientos()[indice].usar())
         print()

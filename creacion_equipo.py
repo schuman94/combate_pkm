@@ -18,22 +18,22 @@ def quitar_disponible(nombre, lista):
     """Quita de la lista de disponibles el pokemon seleccionado"""
     lista.remove(nombre)
 
-def despachar_pokemon(pk, lista):
+def despachar_pokemon(pk, lista, owner):
     """Devuelve el pokemon seleccionado"""
     if pk not in lista:
         raise ValueError('El pokemon elegido no se encuentra disponible')
     elif pk == 'vaporeon':
         quitar_disponible('vaporeon', lista)
-        return Vaporeon()
+        return Vaporeon(owner)
     elif pk == 'flareon':
         quitar_disponible('flareon', lista)
-        return Flareon()
+        return Flareon(owner)
     elif pk == 'jolteon':
         quitar_disponible('jolteon', lista)
-        return Jolteon()
+        return Jolteon(owner)
     elif pk == 'eevee':
         quitar_disponible('eevee', lista)
-        return Eevee()
+        return Eevee(owner)
 
 
 def seleccionar_pokemon_jugador():
@@ -47,7 +47,7 @@ def seleccionar_pokemon_jugador():
 
     while contador < 3:
         try:
-            seleccion[contador] = despachar_pokemon(input('Elige un pokemon: '), disponibles_jugador)
+            seleccion[contador] = despachar_pokemon(input('Elige un pokemon: '), disponibles_jugador, 'jugador')
         except ValueError:
             print('\nEl pokemon elegido no se encuentra disponible. Elige uno de los siguientes:')
             mostrar_disponibles()
@@ -63,6 +63,6 @@ def seleccionar_pokemon_rival():
     seleccion = []
     for i in range(0, 3):
         aleatorio = random.choice(disponibles_rival)
-        poke = despachar_pokemon(aleatorio, disponibles_rival)
+        poke = despachar_pokemon(aleatorio, disponibles_rival, 'rival')
         seleccion.append(poke)
     return seleccion

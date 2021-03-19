@@ -78,4 +78,6 @@ class Pokemon:
 
     def atacar(self, mov):
         """El pokemon usa el ataque indicado y lo imprime en la salida"""
-        print(self.get_nombre() + ' usa ' + self.get_movimientos()[mov].usar())
+        indice = self.get_movimientos().index(mov)
+        print(self.get_nombre() + ' usa ' + self.get_movimientos()[indice].usar())
+        print()

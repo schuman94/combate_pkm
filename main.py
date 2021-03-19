@@ -1,7 +1,7 @@
 import creacion_equipo
 import random
 
-print('Hola entrenador, preparate para combatir!\n')
+print('\nHola entrenador, preparate para combatir!\n')
 print('Pokemon disponibles:')
 creacion_equipo.mostrar_disponibles()
 print()
@@ -14,6 +14,10 @@ __rival = creacion_equipo.Entrenador(__equipo_rival[0], __equipo_rival[1], __equ
 
 #Se crea el combate:
 combate = creacion_equipo.Combate(__jugador, __rival)
+print('COMIENZA EL COMBATE!')
+print(f'El rival envia a {combate.get_rival().pokemon_actual()} | PS:{combate.get_rival().pokemon_actual().get_vida()}')
+print(f'Tu envias a {combate.get_jugador().pokemon_actual()} | PS:{combate.get_jugador().pokemon_actual().get_vida()}')
+print()
 
 #Se inicia el combate:
 while not combate.get_terminado():

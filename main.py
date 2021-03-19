@@ -10,10 +10,12 @@ disponibles_jugador = disponibles[::]
 disponibles_rival = disponibles[::]
 
 def mostrar_disponibles(lista):
+    """Imprime en la salida la lista de pokemon disponibles"""
     for i in lista:
         print(i)
 
 def quitar_disponible(nombre, lista):
+    """Quita de la lista de disponibles el pokemon seleccionado"""
     lista.remove(nombre)
 
 def despachar_pokemon(pk, lista):

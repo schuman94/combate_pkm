@@ -48,7 +48,6 @@ class Combate:
         """Construye el siguiente turno a partir de la accion del jugador"""
         accion_jugador = self.pedir_accion()
         accion_rival = self.seleccionar_ataque_rival()
-
         self.__turno = Turno(accion_jugador, accion_rival)
         #pedir accion
         #elegir primer atacante

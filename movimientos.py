@@ -15,9 +15,11 @@ class Movimiento:
         return self.__pp
 
     def reducir_pp(self):
+        """Reduce los pp en 1"""
         self.__pp -= 1
 
     def usar(self):
+        """Por ahora solo devuelve el nombre (str) del movimiento"""
         if self.get_pp() < 1:
             raise ValueError('No quedan PPs')
         else:

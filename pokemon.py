@@ -50,6 +50,7 @@ class Pokemon:
         self.__estado = estado
 
     def get_movimientos(self):
+        """Devuelve una lista que contiene los 4 movimientos del pokemon"""
         return self.__movimientos
 
     def __str__(self):
@@ -62,16 +63,19 @@ class Pokemon:
 
 
     def set_movimientos(self, mov1, mov2, mov3, mov4):
+        """Añade los 4 movimientos correspondientes al pokemon"""
         self.__movimientos.append(mov1)
         self.__movimientos.append(mov2)
         self.__movimientos.append(mov3)
         self.__movimientos.append(mov4)
 
     def mostrar_movimientos(self):
+        """Imprime en la salida los 4 movimientos disponibles"""
         contador = 1
         for i in self.get_movimientos():
             print(str(contador) + ': ' + str(i))
             contador += 1
 
     def atacar(self, mov):
+        """El pokemon usa el ataque indicado y lo imprime en la salida"""
         print(self.get_nombre() + ' usa ' + self.get_movimientos()[mov].usar())

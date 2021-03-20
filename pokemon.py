@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import random
 
 class Pokemon:
     def __init__(self, tipo, vida, ataque, defensa, velocidad, estado=None, owner=None):
@@ -91,7 +92,20 @@ class Pokemon:
             contador += 1
 
     def atacar(self, mov):
-        """El pokemon usa el ataque indicado y lo imprime en la salida"""
+        """
+        Devuelve un diccionario que contiene la potencia y el efecto del ataque.
+        Si falla devuelve None.
+        """
         indice = self.get_movimientos().index(mov)
-        print(self.get_nombre_completo() + ' usa ' + self.get_movimientos()[indice].usar())
-        print()
+        ataque = self.get_movimientos()[indice]
+        potencia = ataque.get_potencia()
+        precision = ataque.get_precision()
+        efecto = ataque.get_efecto()
+        print(self.get_nombre_completo() + ' usa ' + ataque.get_nombre(), end=' -> ')
+        ataque.usar()
+        if random.randint(1, 100) > precision:
+            print('Pero falló')
+            print()
+            return None
+        else:
+            return {'potencia': potencia, 'efecto': efecto}

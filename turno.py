@@ -50,9 +50,24 @@ class Turno:
         primero = self.prioridad()
         segundo = self.__pokemon_jugador if (primero == self.__pokemon_rival) else self.__pokemon_rival
         #ejecutar el primer movimiento
-        primero.atacar(self.__get_diccionario_ataques()[primero])
-
-
+        datos_ataque = primero.atacar(self.__get_diccionario_ataques()[primero])
+        if datos_ataque != None:
+            damage = ((21 * primero.get_ataque() * datos_ataque['potencia']) // (25 * segundo.get_defensa())) + 2
+            segundo.set_vida(segundo.get_vida() - damage)
         #comprobaciones
+        print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
+        if segundo.get_vida() <= 0:
+            print(segundo.get_nombre_completo() + ' ha sido eliminado')
+            print()
+        else:
+            datos_ataque = segundo.atacar(self.__get_diccionario_ataques()[segundo])
+            if datos_ataque != None:
+                damage = ((21 * segundo.get_ataque() * datos_ataque['potencia']) // (25 * primero.get_defensa())) + 2
+                primero.set_vida(primero.get_vida() - damage)
+            #comprobaciones
+            print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')
+            if primero.get_vida() <= 0:
+                print(primero.get_nombre_completo() + ' ha sido eliminado')
+                print()
         #ejecutar el otro movimiento
         #comprobaciones

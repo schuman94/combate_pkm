@@ -6,6 +6,7 @@ class Movimiento:
         self.__tipo = tipo
         self.__pp = pp
         self.__potencia = potencia
+        self.__precision = precision
         self.__efecto = efecto
 
     def get_nombre(self):
@@ -18,13 +19,21 @@ class Movimiento:
         """Reduce los pp en 1"""
         self.__pp -= 1
 
+    def get_potencia(self):
+        return self.__potencia
+
+    def get_precision(self):
+        return self.__precision
+
+    def get_efecto(self):
+        return self.__efecto
+
     def usar(self):
-        """Por ahora solo devuelve el nombre (str) del movimiento"""
+        """Gasta un pp del ataque"""
         if self.get_pp() < 1:
             raise ValueError('No quedan PPs')
         else:
             self.reducir_pp()
-            return self.get_nombre()
 
     def __str__(self):
         return self.get_nombre().upper() + ' | PP: ' + str(self.get_pp())

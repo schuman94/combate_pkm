@@ -64,7 +64,7 @@ class Combate:
             print()
             ataque = input('Elige el movimiento (1, 2, 3, 4 o atras): ')
             print()
-            if ataque == 'atras':
+            if ataque == 'atras' or ataque == 'q':
                 mov = 'atras'
             elif ataque in '1234':
                 mov = self.get_jugador().pokemon_actual().get_movimientos()[int(ataque) - 1]

@@ -6,8 +6,8 @@ class Turno:
     __contador = 0
 
     def __init__(self, pokemon_jugador: Pokemon, pokemon_rival: Pokemon, accion_jugador, accion_rival):
-        self.__numero = Turno.__contador
         Turno.__contador += 1
+        self.__numero = Turno.__contador
         self.__pokemon_jugador = pokemon_jugador
         self.__pokemon_rival = pokemon_rival
         self.__accion_jugador = accion_jugador
@@ -28,10 +28,11 @@ class Turno:
         return self.__numero
 
     def prioridad(self):
-        """Comprueba si hay un cambio de pokemon, si no, devuelve el pokemon mas rapido"""
-        #if type(self.__accion_jugador) == Movimiento:
-        return self.pokemon_mas_rapido()
-        #Pendiente implementar el cambio de pokemon
+        """Devuelve el pokemon mas rapido o el unico atacante"""
+        if self.__get_diccionario_ataques()[self.__pokemon_jugador] == 'cambio':
+            return self.__pokemon_rival
+        else:
+            return self.pokemon_mas_rapido()
 
 
     def pokemon_mas_rapido(self):
@@ -66,7 +67,7 @@ class Turno:
             print(segundo.get_nombre_completo() + ' ha sido eliminado')
             print()
             return eliminado
-        else:
+        if self.__get_diccionario_ataques()[self.__pokemon_jugador] != 'cambio':
             #ejecutar el otro movimiento
             datos_ataque = segundo.atacar(self.__get_diccionario_ataques()[segundo])
             if datos_ataque != None:

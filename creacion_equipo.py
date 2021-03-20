@@ -5,7 +5,8 @@ from movimientos import *
 import random
 from combate import Combate
 
-disponibles = ['vaporeon', 'flareon', 'jolteon', 'eevee']
+#Esto se tiene que convertir en una lista automatica
+disponibles = ['vaporeon', 'flareon', 'jolteon', 'eevee', 'marowak', 'snorlax', 'rattata', 'tangela']
 disponibles_jugador = disponibles[::]
 disponibles_rival = disponibles[::]
 
@@ -20,6 +21,7 @@ def quitar_disponible(nombre, lista):
 
 def despachar_pokemon(pk, lista, owner):
     """Devuelve el pokemon seleccionado"""
+    #Esto se tiene que convertir en un bucle for que recorra una lista de pokemon
     if pk not in lista:
         raise ValueError('El pokemon elegido no se encuentra disponible')
     elif pk == 'vaporeon':
@@ -34,7 +36,18 @@ def despachar_pokemon(pk, lista, owner):
     elif pk == 'eevee':
         quitar_disponible('eevee', lista)
         return Eevee(owner)
-
+    elif pk == 'marowak':
+        quitar_disponible('marowak', lista)
+        return Marowak(owner)
+    elif pk == 'snorlax':
+        quitar_disponible('snorlax', lista)
+        return Snorlax(owner)
+    elif pk == 'rattata':
+        quitar_disponible('rattata', lista)
+        return Rattata(owner)
+    elif pk == 'tangela':
+        quitar_disponible('tangela', lista)
+        return Tangela(owner)
 
 def seleccionar_pokemon_jugador():
     """Devuelve una lista con 3 instancias de la clase Pokemon que será el equipo del jugador"""

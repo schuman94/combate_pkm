@@ -103,3 +103,46 @@ class Vozarron(Movimiento):
     def __init__(self):
                                              # PP Pot Prec  Ef
         super().__init__('vozarron', 'normal', 10, 90, 100, None)
+
+
+class Terremoto(Movimiento):
+    def __init__(self):
+                                               # PP Pot Prec  Ef
+        super().__init__('terremoto', 'tierra', 10, 100, 100, None)
+
+
+class Tierra_viva(Movimiento):
+    def __init__(self):
+                                                # PP Pot Prec  Ef
+        super().__init__('tierra viva', 'tierra', 10, 90, 100, None)
+
+
+class Doble_patada(Movimiento):
+    def __init__(self):
+                                                # PP Pot Prec  Ef
+        super().__init__('doble patada', 'lucha', 30, 60, 100, None)
+
+class Placaje(Movimiento):
+    def __init__(self):
+                                             # PP Pot Prec  Ef
+        super().__init__('placaje', 'normal', 35, 40, 100, None)
+
+class Rayo_hielo(Movimiento):
+    def __init__(self):
+                                              # PP Pot Prec  Ef
+        super().__init__('rayo hielo', 'hielo', 10, 90, 100, 'congelar')
+
+class Bomba_germen(Movimiento):
+    def __init__(self):
+                                                 # PP Pot Prec  Ef
+        super().__init__('bomba germen', 'planta', 15, 80, 100, None)
+
+class Energibola(Movimiento):
+    def __init__(self):
+                                               # PP Pot Prec  Ef
+        super().__init__('energibola', 'planta', 10, 90, 100, None)
+
+class Latigazo(Movimiento):
+    def __init__(self):
+                                             # PP Pot Prec  Ef
+        super().__init__('latigazo', 'planta', 10, 120, 85, None)

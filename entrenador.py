@@ -34,9 +34,9 @@ class Entrenador:
             if self.pokemon_actual() == self.get_pokemon(nombre):
                 raise ValueError(f'{str(self.get_pokemon(nombre)).upper()} ya se encuentra en combate')
             self.__actual = self.get_pokemon(nombre)
-            print(f'Adelante {str(self.get_pokemon(nombre)).upper()}!')
+            print(f'{self.get_nombre()} envia a {str(self.get_pokemon(nombre))}!\n')
         except KeyError:
-            print('El pokemon no se encuentra en el equipo')
+           raise ValueError('El pokemon no se encuentra en el equipo')
 
     def get_equipo(self):
         """Devuelve un diccionario con el equipo pokemon"""
@@ -46,7 +46,7 @@ class Entrenador:
         """Imprime en la salida los pokemon del equipo"""
         print()
         for i in self.get_equipo().values():
-            print(str(i).upper())
+            print(str(i) + ' | PS:' + str(i.get_vida()))
         print()
 
     def eliminar_pokemon(self, pokemon):

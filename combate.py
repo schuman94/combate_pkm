@@ -32,7 +32,7 @@ class Combate:
 
     def set_ganador(self, entrenador: Entrenador):
         """Confirma el ganador"""
-        print('GANADOR: ' + entrenador.get_nombre().upper())
+        print('GANADOR: ' + entrenador.get_apodo().upper())
 
     def pedir_accion(self):
         """Devuelve un movimiento (class Movimiento) o un cambio de pokemon"""

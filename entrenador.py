@@ -1,10 +1,14 @@
 from pokemon import Pokemon
 
 class Entrenador:
-    def __init__(self, nombre, pk1: Pokemon, pk2: Pokemon, pk3: Pokemon):
+    def __init__(self, nombre, pk1: Pokemon, pk2: Pokemon, pk3: Pokemon, apodo):
         self.__nombre = nombre
         self.__asignar_pokemones(pk1, pk2, pk3)
         self.__actual = pk1
+        self.__apodo = apodo
+
+    def get_apodo(self):
+        return self.__apodo
 
     def get_nombre(self):
         return self.__nombre
@@ -34,7 +38,8 @@ class Entrenador:
             if self.pokemon_actual() == self.get_pokemon(nombre):
                 raise ValueError(f'{str(self.get_pokemon(nombre)).upper()} ya se encuentra en combate')
             self.__actual = self.get_pokemon(nombre)
-            print(f'{self.get_nombre()} envia a {str(self.get_pokemon(nombre))}!\n')
+            poke = str(self.get_pokemon(nombre))[:-8] if self.get_apodo() == 'Rival' else str(self.get_pokemon(nombre))
+            print(f'{self.get_apodo()} envia a {poke}\n')
         except KeyError:
            raise ValueError('El pokemon no se encuentra en el equipo')
 

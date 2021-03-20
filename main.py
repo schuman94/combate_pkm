@@ -15,14 +15,14 @@ __rival = creacion_equipo.Entrenador('rival', __equipo_rival[0], __equipo_rival[
 #Se crea el combate:
 combate = creacion_equipo.Combate(__jugador, __rival)
 print('COMIENZA EL COMBATE!')
+print(f'Envías a {combate.get_jugador().pokemon_actual().get_nombre()} | PS:{combate.get_jugador().pokemon_actual().get_vida()}')
 print(f'Rival envía a {combate.get_rival().pokemon_actual().get_nombre()} | PS:{combate.get_rival().pokemon_actual().get_vida()}')
-print(f'Tu envías a {combate.get_jugador().pokemon_actual().get_nombre()} | PS:{combate.get_jugador().pokemon_actual().get_vida()}')
 print()
 
 #Se inicia el combate:
 while not combate.get_terminado():
     combate.siguiente_turno()
 
-print('pulsa ctrl+z para salir')
+input('\nPulsa ctrl+z para salir: ')
 
 #SERGIO CHULIAN MANTEL

@@ -133,6 +133,7 @@ class Combate:
         accion_rival = self.seleccionar_ataque_rival()
         self.__turno = Turno(self.get_jugador().pokemon_actual(), self.get_rival().pokemon_actual(), \
                              accion_jugador, accion_rival)
+        print('_________________________________________________________________________ \n')
         print('TURNO ' + str(self.__turno.get_numero()) + '\n')
         eliminado = self.__iniciar_turno()
         self.__finalizar_turno(eliminado)

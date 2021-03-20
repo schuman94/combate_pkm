@@ -116,8 +116,10 @@ class Turno:
             if primero.get_vida() == 0:
                 eliminado = primero
                 print(primero.get_nombre_completo() + ' ha sido eliminado')
+                print('_________________________________________________________________________ \n')
                 print()
                 return eliminado
+        print('_________________________________________________________________________ \n')
         return eliminado
 
 #SERGIO CHULIAN MANTEL

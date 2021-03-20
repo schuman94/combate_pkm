@@ -72,7 +72,7 @@ class Combate:
                     print('NO QUEDAN PP\'s\n')
                     continue
             else:
-                print('Opcion no valida.\n')
+                print('Opción no valida.\n')
                 continue
             return mov
 

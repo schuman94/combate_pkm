@@ -52,23 +52,23 @@ class Turno:
         1 -> 'Es muy eficaz' , 'Es poco eficaz', ''
         """
         ####################ALGORITMO DAÑO######################
-        elemento_ataque = datos_ataque['tipo'].get_elemento()
-        elemento_atacante = atacante.get_tipo().get_elemento()
-        elemento_receptor = receptor.get_tipo().get_elemento()
+        elemento_ataque = datos_ataque['tipo']
+        elemento_atacante = atacante.get_tipo()
+        elemento_receptor = receptor.get_tipo()
 
-        B = 1.5 if elemento_atacante == elemento_ataque else 1
+        B = 1.5 if elemento_atacante.get_elemento() == elemento_ataque.get_elemento() else 1
 
-        if elemento_receptor in elemento_ataque.get_eficaz():
+        if elemento_receptor.get_elemento() in elemento_ataque.get_eficaz():
             E = 2
-            eficacia = 'Es muy eficaz.'
-        elif elemento_receptor in elemento_ataque.get_no_eficaz():
+            eficacia = ' ->  Es muy eficaz'
+        elif elemento_receptor.get_elemento() in elemento_ataque.get_no_eficaz():
             E = 0.5
-            eficacia = 'Es poco eficaz.'
+            eficacia = ' ->  Es poco eficaz'
         else:
             E = 1
             eficacia = ''
 
-        V = random.randint(85, 100) / 100
+        V = random.randint(85, 100)
         N = 100 #Nivel del pokemon
         A = atacante.get_ataque()
         P = datos_ataque['potencia']
@@ -92,8 +92,8 @@ class Turno:
         if datos_ataque != None:
             damage = self.calculo_damage(primero, segundo, datos_ataque)
             segundo.set_vida(segundo.get_vida() - damage[0])
+            print(damage[1], end='  ->  ') #Esto es la cadena que indica si es eficaz
         #comprobaciones
-        print(damage[1])
         if segundo.get_vida() < 0:
             segundo.set_vida(0)
         print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
@@ -108,8 +108,8 @@ class Turno:
             if datos_ataque != None:
                 damage = self.calculo_damage(segundo, primero, datos_ataque)
                 primero.set_vida(primero.get_vida() - damage[0])
+                print(damage[1], end='  ->  ') #Esto es la cadena que indica si es eficaz
             #comprobaciones
-            print(damage[1])
             if primero.get_vida() < 0:
                 primero.set_vida(0)
             print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')

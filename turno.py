@@ -45,7 +45,12 @@ class Turno:
 
 
     def ejecutar(self):
-        """Ejecuta el turno"""
+        """
+        Ejecuta el turno.
+        Devuelve None si no hay pokemon eliminado.
+        Devuelve un pokemon si ha sido eliminado.
+        """
+        eliminado = None
         #pedirle al turno ordenar los pokemon por velocidad
         primero = self.prioridad()
         segundo = self.__pokemon_jugador if (primero == self.__pokemon_rival) else self.__pokemon_rival
@@ -57,9 +62,12 @@ class Turno:
         #comprobaciones
         print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
         if segundo.get_vida() <= 0:
+            eliminado = segundo
             print(segundo.get_nombre_completo() + ' ha sido eliminado')
             print()
+            return eliminado
         else:
+            #ejecutar el otro movimiento
             datos_ataque = segundo.atacar(self.__get_diccionario_ataques()[segundo])
             if datos_ataque != None:
                 damage = ((21 * segundo.get_ataque() * datos_ataque['potencia']) // (25 * primero.get_defensa())) + 2
@@ -67,7 +75,8 @@ class Turno:
             #comprobaciones
             print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')
             if primero.get_vida() <= 0:
+                eliminado = primero
                 print(primero.get_nombre_completo() + ' ha sido eliminado')
                 print()
-        #ejecutar el otro movimiento
-        #comprobaciones
+                return eliminado
+        return eliminado

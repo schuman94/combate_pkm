@@ -1,9 +1,13 @@
 from pokemon import Pokemon
 
 class Entrenador:
-    def __init__(self, pk1: Pokemon, pk2: Pokemon, pk3: Pokemon):
+    def __init__(self, nombre, pk1: Pokemon, pk2: Pokemon, pk3: Pokemon):
+        self.__nombre = nombre
         self.__asignar_pokemones(pk1, pk2, pk3)
         self.__actual = pk1
+
+    def get_nombre(self):
+        return self.__nombre
 
     def __asignar_pokemones(self, pk1, pk2, pk3):
         """Mete en el equipo del entrenador los 3 pokemon indicados"""
@@ -20,6 +24,10 @@ class Entrenador:
         """Devuelve el pokemon que se encuentra en combate"""
         return self.__actual
 
+    def eliminar_pokemon_actual(self):
+        """Elimina el pokemon actual"""
+        self.__actual = None
+
     def cambiar(self, nombre):
         """Cambia el pokemon que se encuentra en combate por otro seleccionado"""
         try:
@@ -28,7 +36,7 @@ class Entrenador:
             self.__actual = self.get_pokemon(nombre)
             print(f'Adelante {str(self.get_pokemon(nombre)).upper()}!')
         except KeyError:
-            print('No tienes ese pokemon en tu equipo')
+            print('El pokemon no se encuentra en el equipo')
 
     def get_equipo(self):
         """Devuelve un diccionario con el equipo pokemon"""
@@ -40,3 +48,7 @@ class Entrenador:
         for i in self.get_equipo().values():
             print(str(i).upper())
         print()
+
+    def eliminar_pokemon(self, pokemon):
+        """Elimina un pokemon del equipo"""
+        del self.get_equipo()[pokemon.get_nombre()]

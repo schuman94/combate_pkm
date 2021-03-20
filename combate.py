@@ -8,6 +8,7 @@ class Combate:
         self.__rival = rival
         self.__turno = None
         self.__terminado = False
+        self.__ganador = None
 
     def get_jugador(self):
         """Devuelve al jugador"""
@@ -28,6 +29,10 @@ class Combate:
     def set_terminado(self):
         """Marcar como terminado el combate"""
         self.__terminado = True
+
+    def set_ganador(self, entrenador: Entrenador):
+        """Confirma el ganador"""
+        print('GANADOR: ' + entrenador.get_nombre().upper())
 
     def pedir_accion(self):
         """Devuelve un movimiento (class Movimiento) o un cambio de pokemon"""
@@ -60,7 +65,32 @@ class Combate:
         return random.choice(self.get_rival().pokemon_actual().get_movimientos())
 
     def __iniciar_turno(self):
-        self.get_turno().ejecutar()
+        """
+        Inicia el turno, lo ejecuta.
+        Devuelve None si ambos pokemo siguen vivos.
+        Devuelve un pokemon si ha sido eliminado.
+        """
+        return self.get_turno().ejecutar()
+
+    def __finalizar_turno(self, eliminado):
+        """
+        Comprueba si a alguno de los entrenadores le quedan mas pokemon.
+        Realiza el cambio o finaliza el combate.
+        """
+        if eliminado != None:
+            #eliminar pokemonactual del entrenador y eliminarlo de su equipo
+            entrenador_con_pokemon_eliminado = self.get_rival() if eliminado.get_owner() == 'rival' else self.get_jugador()
+            entrenador_con_pokemon_eliminado.eliminar_pokemon_actual()
+            entrenador_con_pokemon_eliminado.eliminar_pokemon(eliminado)
+            #Si quedan pokemon en su equipo:
+            if len(entrenador_con_pokemon_eliminado.get_equipo()) > 0:
+                #Asignar un nuevo pokemonactual al entrenador de los que quedan en su equipo
+                nuevo_pokemon = random.choice(list(entrenador_con_pokemon_eliminado.get_equipo().values()))
+                entrenador_con_pokemon_eliminado.cambiar(nuevo_pokemon.get_nombre())
+            #Si no quedan pokemon en su equipo:
+            if len(entrenador_con_pokemon_eliminado.get_equipo()) == 0:
+                self.set_terminado()
+                self.finalizar_combate(entrenador_con_pokemon_eliminado)
 
 
     def siguiente_turno(self):
@@ -74,4 +104,12 @@ class Combate:
         accion_rival = self.seleccionar_ataque_rival()
         self.__turno = Turno(self.get_jugador().pokemon_actual(), self.get_rival().pokemon_actual(), \
                              accion_jugador, accion_rival)
-        self.__iniciar_turno()
+        eliminado = self.__iniciar_turno()
+        self.__finalizar_turno(eliminado)
+
+    def finalizar_combate(self, perdedor: Entrenador):
+        """Recibe el entrenador perdedor y confirma el ganador"""
+        if perdedor.get_nombre() == 'rival':
+            self.set_ganador(self.get_jugador())
+        elif perdedor.get_nombre() == 'jugador':
+            self.set_ganador(self.get_rival())

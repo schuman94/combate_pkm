@@ -104,8 +104,7 @@ class Pokemon:
         print(self.get_nombre_completo() + ' usa ' + ataque.get_nombre(), end=' -> ')
         ataque.usar()
         if random.randint(1, 100) > precision:
-            print('Pero falló')
-            print()
+            print('Pero falló', end=' -> ')
             return None
         else:
             return {'potencia': potencia, 'efecto': efecto}

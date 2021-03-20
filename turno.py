@@ -61,8 +61,10 @@ class Turno:
             damage = ((21 * primero.get_ataque() * datos_ataque['potencia']) // (25 * segundo.get_defensa())) + 2
             segundo.set_vida(segundo.get_vida() - damage)
         #comprobaciones
+        if segundo.get_vida() < 0:
+            segundo.set_vida(0)
         print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
-        if segundo.get_vida() <= 0:
+        if segundo.get_vida() == 0:
             eliminado = segundo
             print(segundo.get_nombre_completo() + ' ha sido eliminado')
             print()
@@ -74,8 +76,10 @@ class Turno:
                 damage = ((21 * segundo.get_ataque() * datos_ataque['potencia']) // (25 * primero.get_defensa())) + 2
                 primero.set_vida(primero.get_vida() - damage)
             #comprobaciones
+            if primero.get_vida() < 0:
+                primero.set_vida(0)
             print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')
-            if primero.get_vida() <= 0:
+            if primero.get_vida() == 0:
                 eliminado = primero
                 print(primero.get_nombre_completo() + ' ha sido eliminado')
                 print()

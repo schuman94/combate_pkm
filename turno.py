@@ -1,5 +1,6 @@
 from pokemon import Pokemon
 from movimientos import Movimiento
+from tipos import *
 import random
 
 class Turno:
@@ -44,6 +45,37 @@ class Turno:
         else:
             return self.__pokemon_rival
 
+    def calculo_damage(self, atacante: Pokemon, receptor: Pokemon, datos_ataque):
+        """
+        Devuelve una lista que contiene:
+        0 -> un entero con la cantidad de daño que ocasiona el ataque.
+        1 -> 'Es muy eficaz' , 'Es poco eficaz', ''
+        """
+        ####################ALGORITMO DAÑO######################
+        elemento_ataque = datos_ataque['tipo'].get_elemento()
+        elemento_atacante = atacante.get_tipo().get_elemento()
+        elemento_receptor = receptor.get_tipo().get_elemento()
+
+        B = 1.5 if elemento_atacante == elemento_ataque else 1
+
+        if elemento_receptor in elemento_ataque.get_eficaz():
+            E = 2
+            eficacia = 'Es muy eficaz.'
+        elif elemento_receptor in elemento_ataque.get_no_eficaz():
+            E = 0.5
+            eficacia = 'Es poco eficaz.'
+        else:
+            E = 1
+            eficacia = ''
+
+        V = random.randint(85, 100) / 100
+        N = 100 #Nivel del pokemon
+        A = atacante.get_ataque()
+        P = datos_ataque['potencia']
+        D = receptor.get_defensa()
+
+        damage = [int(0.01 * B * E * V * (((0.2 * N + 1) * A * P) / (25 * D) + 2)), eficacia]
+        return damage
 
     def ejecutar(self):
         """
@@ -58,9 +90,10 @@ class Turno:
         #ejecutar el primer movimiento
         datos_ataque = primero.atacar(self.__get_diccionario_ataques()[primero])
         if datos_ataque != None:
-            damage = ((21 * primero.get_ataque() * datos_ataque['potencia']) // (25 * segundo.get_defensa())) + 2
-            segundo.set_vida(segundo.get_vida() - damage)
+            damage = self.calculo_damage(primero, segundo, datos_ataque)
+            segundo.set_vida(segundo.get_vida() - damage[0])
         #comprobaciones
+        print(damage[1])
         if segundo.get_vida() < 0:
             segundo.set_vida(0)
         print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
@@ -73,9 +106,10 @@ class Turno:
             #ejecutar el otro movimiento
             datos_ataque = segundo.atacar(self.__get_diccionario_ataques()[segundo])
             if datos_ataque != None:
-                damage = ((21 * segundo.get_ataque() * datos_ataque['potencia']) // (25 * primero.get_defensa())) + 2
-                primero.set_vida(primero.get_vida() - damage)
+                damage = self.calculo_damage(segundo, primero, datos_ataque)
+                primero.set_vida(primero.get_vida() - damage[0])
             #comprobaciones
+            print(damage[1])
             if primero.get_vida() < 0:
                 primero.set_vida(0)
             print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')

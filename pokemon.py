@@ -93,7 +93,7 @@ class Pokemon:
 
     def atacar(self, mov):
         """
-        Devuelve un diccionario que contiene la potencia y el efecto del ataque.
+        Devuelve un diccionario que contiene la potencia, el efecto del ataque y su tipo.
         Si falla devuelve None.
         """
         indice = self.get_movimientos().index(mov)
@@ -101,10 +101,11 @@ class Pokemon:
         potencia = ataque.get_potencia()
         precision = ataque.get_precision()
         efecto = ataque.get_efecto()
+        tipo = ataque.get_tipo()
         print(self.get_nombre_completo() + ' usa ' + ataque.get_nombre(), end=' -> ')
         ataque.usar()
         if random.randint(1, 100) > precision:
             print('Pero falló', end=' -> ')
             return None
         else:
-            return {'potencia': potencia, 'efecto': efecto}
+            return {'potencia': potencia, 'efecto': efecto, 'tipo': tipo}

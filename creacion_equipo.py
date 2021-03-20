@@ -6,7 +6,7 @@ import random
 from combate import Combate
 
 #Esto se tiene que convertir en una lista automatica
-disponibles = ['vaporeon', 'flareon', 'jolteon', 'eevee', 'marowak', 'snorlax', 'rattata', 'tangela']
+disponibles = ['vaporeon', 'flareon', 'jolteon', 'eevee', 'muk', 'snorlax', 'rattata', 'tangela']
 disponibles_jugador = disponibles[::]
 disponibles_rival = disponibles[::]
 
@@ -36,9 +36,9 @@ def despachar_pokemon(pk, lista, owner):
     elif pk == 'eevee':
         quitar_disponible('eevee', lista)
         return Eevee(owner)
-    elif pk == 'marowak':
-        quitar_disponible('marowak', lista)
-        return Marowak(owner)
+    elif pk == 'muk':
+        quitar_disponible('muk', lista)
+        return Muk(owner)
     elif pk == 'snorlax':
         quitar_disponible('snorlax', lista)
         return Snorlax(owner)
@@ -61,6 +61,7 @@ def seleccionar_pokemon_jugador():
     while contador < 3:
         try:
             seleccion[contador] = despachar_pokemon(input('Elige un pokemon: '), disponibles_jugador, 'jugador')
+            print('funcionaaa por ahoraaaaaaaaaaaaa')
         except ValueError:
             print('\nEl pokemon elegido no se encuentra disponible. Elige uno de los siguientes:')
             mostrar_disponibles()

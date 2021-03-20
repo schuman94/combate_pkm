@@ -37,17 +37,17 @@ class Combate:
     def pedir_accion(self):
         """Devuelve un movimiento (class Movimiento) o un cambio de pokemon"""
         opcion = 'atras'
-        while opcion == 'atras':
+        while opcion == 'atras' or opcion == 'q':
             peticion = input(f'atacar o cambiar: ')
             print()
-            if peticion == 'atacar':
+            if peticion == 'atacar' or peticion == 'a':
                 opcion = self.pedir_ataque()
-            if peticion == 'cambiar':
+            if peticion == 'cambiar' or peticion == 'c':
                 print('Tu equipo:')
                 self.get_jugador().equipo()
                 pk = input('Selecciona el pokemon o vuelve atras: ')
                 print()
-                if pk == 'atras':
+                if pk == 'atras' or pk == 'q':
                     continue
                 try:
                     self.get_jugador().cambiar(pk)

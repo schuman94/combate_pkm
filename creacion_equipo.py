@@ -79,3 +79,5 @@ def seleccionar_pokemon_rival():
         poke = despachar_pokemon(aleatorio, disponibles_rival, 'rival')
         seleccion.append(poke)
     return seleccion
+
+#SERGIO CHULIAN MANTEL

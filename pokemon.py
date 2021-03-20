@@ -109,3 +109,5 @@ class Pokemon:
             return None
         else:
             return {'potencia': potencia, 'efecto': efecto, 'tipo': tipo}
+
+#SERGIO CHULIAN MANTEL

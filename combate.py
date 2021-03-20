@@ -143,3 +143,5 @@ class Combate:
             self.set_ganador(self.get_jugador())
         elif perdedor.get_nombre() == 'jugador':
             self.set_ganador(self.get_rival())
+
+#SERGIO CHULIAN MANTEL

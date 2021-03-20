@@ -52,3 +52,5 @@ class Entrenador:
     def eliminar_pokemon(self, pokemon):
         """Elimina un pokemon del equipo"""
         del self.get_equipo()[pokemon.get_nombre()]
+
+#SERGIO CHULIAN MANTEL

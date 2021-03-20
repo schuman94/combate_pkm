@@ -87,3 +87,5 @@ class Lucha(Tipo):
         self.set_elemento('lucha')
         self.set_eficaz(['normal', 'hielo'])
         self.set_no_eficaz(['veneno'])
+
+#SERGIO CHULIAN MANTEL

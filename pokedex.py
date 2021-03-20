@@ -56,3 +56,5 @@ class Tangela(Pokemon):
         super().__init__(Planta(), 334, 328, 361, 240, owner=owner)
         self.set_nombre('tangela')
         self.set_movimientos(Golpe_cuerpo(), Bomba_germen(), Energibola(), Latigazo())
+
+#SERGIO CHULIAN MANTEL

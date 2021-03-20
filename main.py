@@ -24,3 +24,5 @@ while not combate.get_terminado():
     combate.siguiente_turno()
 
 print('pulsa ctrl+z para salir')
+
+#SERGIO CHULIAN MANTEL

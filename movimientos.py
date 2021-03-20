@@ -160,3 +160,5 @@ class Bomba_lodo(Movimiento):
     def __init__(self):
                                                # PP Pot Prec  Ef
         super().__init__('bomba lodo', Veneno(), 10, 90, 100, 'Envenenar')
+
+#SERGIO CHULIAN MANTEL

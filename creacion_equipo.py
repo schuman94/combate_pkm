@@ -61,7 +61,7 @@ def seleccionar_pokemon_jugador():
     while contador < 3:
         try:
             seleccion[contador] = despachar_pokemon(input('Elige un pokemon: '), disponibles_jugador, 'jugador')
-            print('funcionaaa por ahoraaaaaaaaaaaaa')
+            print('¿¿¿funcionaaa????')
         except ValueError:
             print('\nEl pokemon elegido no se encuentra disponible. Elige uno de los siguientes:')
             mostrar_disponibles()

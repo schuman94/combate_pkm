@@ -99,7 +99,7 @@ class Turno:
         print(f'{segundo.get_nombre_completo()} | PS:{segundo.get_vida()}\n')
         if segundo.get_vida() == 0:
             eliminado = segundo
-            print(segundo.get_nombre_completo() + ' ha sido eliminado')
+            print(segundo.get_nombre_completo() + ' se ha debilitado')
             print()
             return eliminado
         if self.__get_diccionario_ataques()[self.__pokemon_jugador] != 'cambio':
@@ -115,7 +115,7 @@ class Turno:
             print(f'{primero.get_nombre_completo()} | PS:{primero.get_vida()}\n')
             if primero.get_vida() == 0:
                 eliminado = primero
-                print(primero.get_nombre_completo() + ' ha sido eliminado')
+                print(primero.get_nombre_completo() + ' se ha debilitado')
                 print('_________________________________________________________________________ \n')
                 print()
                 return eliminado

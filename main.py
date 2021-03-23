@@ -3,7 +3,7 @@ import random
 
 nombre_jugador = input('Escribe tu nombre: ')
 print(f'\nHola {nombre_jugador}, preparate para combatir!\n')
-print('Pokemon disponibles:')
+print('Escoge 3 de los Pokemon disponibles:')
 creacion_equipo.mostrar_disponibles()
 print()
 
